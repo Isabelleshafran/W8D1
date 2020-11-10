@@ -1,0 +1,27 @@
+<h1><%= @post.title %></h1>
+
+<a href="<%= post_url(@post.id) %>"><%= @post.url %></a>
+<%= @post.content%>
+<br>
+
+<p>authored by: <%= @post.author.username %><p>
+
+<br>
+<a href="<%= sub_url(@post.sub_id) %>">Go Back To Sub</a>
+<br>
+<form action='<%= post_comments_url(@post.id) %>' method='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <label>
+    <input type='text' name='comment[content]' value=''>
+  </label>
+  <input type='submit' value='Comment'>
+</form>
+
+<% @post.comments.each do |comment| %>
+    <%= comment.author.username %>
+    <%= comment.content %>
+    <br>
+<% end %>
+
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redditclone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <% if logged_in? %>
+    <form action='<%= session_url %>' method='POST'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type='hidden' name='_method' value='DELETE'>
+      <input type='submit' value='Sign Out'>
+    </form>
+    <form action='<%= user_url(current_user.id) %>' method='GET'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type='submit' value='My Profile'>
+    </form>
+  <% else %>
+      <form action='<%= new_user_url %>' method='GET'>
+        <input type='submit' value='Sign Up'>
+      </form>
+      <form action='<%= new_session_url %>' method='GET'>
+        <input type='submit' value='Sign In'>
+      </form>
+  <% end %>
+
+
+    <% if flash[:errors] %>
+      <%= flash[:errors].join(', ') %>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

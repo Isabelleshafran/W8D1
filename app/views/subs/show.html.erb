@@ -1,0 +1,31 @@
+<form action='<%= subs_url %>' method='GET'>
+  <input type='submit' value='return to subs'>
+</form>
+
+<h1><%= @sub.title %></h1>
+
+<form action='<%= edit_sub_url %>' method='GET'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <input type='submit' value='Edit Sub'>
+</form>
+
+<form action='<%= new_sub_post_url(@sub.id) %>' method='GET'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <input type='submit' value='Create Post'>
+</form>
+
+
+<% @sub.posts.each do |post| %>
+    <label>
+        <a href="<%= post_url(post.id) %>"><%= post.title %></a>  
+    </label>
+    <br>
+    <label>
+    Content: <%= post.content %>
+    </label>
+    <br>
+    <form action='<%= edit_post_url(post.id) %>' method='GET'>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type='submit' value='Edit Post'>
+    </form>
+<% end %>

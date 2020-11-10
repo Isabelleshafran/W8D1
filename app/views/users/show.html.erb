@@ -1,0 +1,20 @@
+<h1>My Profile</h1>
+
+<% @user.posts.each do |post| %>
+    <label>Title: <%= post.title %></label>
+    <br>
+    <label>Content: <%= post.content %></label>
+    <br>
+    <br>
+<% end %>
+
+<br>
+<br>
+<br>
+
+<% @user.comments.each do |comment| %>
+    <label>Comment: <%= comment.content %></label>
+    <form action='<%= post_url(comment.post.id) %>' method='GET'>
+      <input type='submit' value='See Parent Post'>
+    </form>
+<% end %>
