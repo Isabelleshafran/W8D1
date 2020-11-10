@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create, :destroy]
 
-  resources :subs, except: [:destroy] do 
+  resources :subs do 
     resources :posts, only: [:create, :new]
   end
 

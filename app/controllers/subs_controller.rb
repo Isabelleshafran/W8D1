@@ -55,6 +55,17 @@ class SubsController < ApplicationController
         end
     end
 
+    def destroy 
+        @sub = current_user.subs.find_by(id: params[:id])
+
+        if @sub && @sub.delete 
+            redirect_to subs_url
+        else 
+            flash[:errors] = ["Must be sub owner to delete"]
+            redirect_to subs_url
+        end
+    end
+
     private
 
     def sub_params

@@ -10,7 +10,7 @@
   </head>
 
   <body>
-
+  <h1>RedditClone</h1>
   <% if logged_in? %>
     <form action='<%= session_url %>' method='POST'>
       <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>

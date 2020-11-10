@@ -3,10 +3,17 @@
 </form>
 
 <h1><%= @sub.title %></h1>
+<h4><%= @sub.description %></h4>
 
 <form action='<%= edit_sub_url %>' method='GET'>
   <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
   <input type='submit' value='Edit Sub'>
+</form>
+
+<form action='<%= sub_url %>' method='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <input type='hidden' name='_method' value='DELETE'>
+  <input type='submit' value='Delete Sub'>
 </form>
 
 <form action='<%= new_sub_post_url(@sub.id) %>' method='GET'>
@@ -14,6 +21,7 @@
   <input type='submit' value='Create Post'>
 </form>
 
+<br>
 
 <% @sub.posts.each do |post| %>
     <label>
@@ -24,8 +32,17 @@
     Content: <%= post.content %>
     </label>
     <br>
+    <br>
     <form action='<%= edit_post_url(post.id) %>' method='GET'>
     <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
     <input type='submit' value='Edit Post'>
     </form>
+
+    <form action='<%= post_url(post.id) %>' method='POST'>
+      <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+      <input type='hidden' name='_method' value='DELETE'>
+      
+      <input type='submit' value='Delete Post'>
+    </form>
+  
 <% end %>

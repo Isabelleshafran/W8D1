@@ -1,17 +1,21 @@
-<h1>My Profile</h1>
+<form action='<%= subs_url %>' method='GET'>
+  <input type='submit' value='return to subs'>
+</form>
 
+<h1>My Profile</h1>
+<h3>Welcome, <%= @user.username %>!</h3>
+
+<h3>Your Posts</h3>
 <% @user.posts.each do |post| %>
     <label>Title: <%= post.title %></label>
     <br>
     <label>Content: <%= post.content %></label>
     <br>
-    <br>
 <% end %>
 
 <br>
-<br>
-<br>
 
+<h3>Your Comments</h3>
 <% @user.comments.each do |comment| %>
     <label>Comment: <%= comment.content %></label>
     <form action='<%= post_url(comment.post.id) %>' method='GET'>

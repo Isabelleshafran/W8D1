@@ -1,4 +1,4 @@
-<h1>Our Subs</h1>
+<h1>All Subs</h1>
 
 <form action='<%= new_sub_url %>' method='GET'>
   <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
@@ -9,7 +9,9 @@
 
 
 <% @subs.each do |sub| %>
-    <a href="<%= sub_url(sub.id) %>"><%= sub.title %></a>
-    <%= sub.description %>
+  <ul>
+    Sub: <a href="<%= sub_url(sub.id) %>"><%= sub.title %></a>
     <br>
+    <%= sub.description %>
+  </ul>
 <% end %>
